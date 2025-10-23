@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Miles For Uncle Edwy - Running the Brooklyn Half Marathon to honor Uncle Edwy's memory and fight colorectal cancer">
+    <meta name="keywords" content="Brooklyn Half Marathon, colorectal cancer, St. Jude, Memorial Sloan Kettering, Uncle Edwy, fundraising">
+    <title>Miles For Uncle Edwy - Brooklyn Half Marathon 2025</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .race-logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            transition: transform 0.3s ease;
+        }
+        
+        .race-logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .race-logo img {
+            width: 180px;
+            height: auto;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            font-style: italic;
+            opacity: 0.95;
+        }
+        
+        .hero p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 20px auto;
+            opacity: 0.9;
+        }
+        
+        .race-badge {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: bold;
+            margin-top: 25px;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .section {
+            padding: 80px 20px;
+        }
+        
+        .section h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #2c3e50;
+        }
+        
+        .uncle-tribute {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+        }
+        
+        .tribute-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .tribute-content h2 {
+            color: white;
+            font-size: 3em;
+            margin-bottom: 30px;
+        }
+        
+        .tribute-box {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .tribute-box h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .tribute-box .dates {
+            font-size: 1.3em;
+            margin-bottom: 25px;
+            font-style: italic;
+            opacity: 0.95;
+        }
+        
+        .tribute-box p {
+            font-size: 1.2em;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+        
+        .photo-frame {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 30px auto;
+            border: 5px solid rgba(255,255,255,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+        }
+        
+        .heart {
+            font-size: 3em;
+            margin: 30px 0;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 20px;
+            font-size: 1.1em;
+        }
+        
+        .race-photo-section {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .race-photo-section h3 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .story {
+            background: #f9f9f9;
+        }
+        
+        .story-content {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.15em;
+            line-height: 1.9;
+        }
+        
+        .story-content p {
+            margin-bottom: 25px;
+        }
+        
+        .story-content strong {
+            color: #667eea;
+        }
+        
+        .impact-section {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .impact-section h3 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .impact-item {
+            padding: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .impact-item h4 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+        
+        .fundraising-tracker {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 40px auto;
+            max-width: 900px;
+        }
+        
+        .tracker-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .tracker-header h3 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        
+        .total-raised {
+            font-size: 4em;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .goal-text {
+            font-size: 1.3em;
+            color: #666;
+            margin-top: 15px;
+        }
+        
+        .progress-bar-container {
+            background: #e0e0e0;
+            border-radius: 25px;
+            height: 50px;
+            margin: 40px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            border-radius: 25px;
+            transition: width 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .charity-breakdown {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .charity-item {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .charity-item h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .charity-amount {
+            font-size: 2.5em;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .donation-section {
+            background: #f9f9f9;
+        }
+        
+        .donation-intro {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 50px;
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+        
+        .donation-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .donation-card {
+            background: white;
+            padding: 45px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .donation-card h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .donation-card p {
+            margin-bottom: 25px;
+            color: #666;
+            font-size: 1.05em;
+            line-height: 1.7;
+        }
+        
+        .embed-placeholder {
+            background: linear-gradient(135deg, #e8f4f8 0%, #d4e7f2 100%);
+            border: 3px dashed #667eea;
+            padding: 70px 20px;
+            border-radius: 10px;
+            color: #667eea;
+            font-weight: bold;
+            margin: 25px 0;
+            font-size: 1.1em;
+        }
+        
+        .donate-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 45px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.15em;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+        }
+        
+        .donate-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        
+        .footer h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+        
+        @media (max-width: 768px) {
+            .race-logo {
+                position: static;
+                margin: 0 auto 20px;
+                display: block;
+                text-align: center;
+            }
+            
+            .race-logo img {
+                width: 140px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2em;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2em;
+            }
+            
+            .donation-cards,
+            .charity-breakdown,
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tribute-box {
+                padding: 30px;
+            }
+            
+            .total-raised {
+                font-size: 3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <!-- Brooklyn Half Marathon Logo -->
+        <a href="https://www.nyrr.org/races/nycrunsbrooklyn" target="_blank" rel="noopener" class="race-logo" aria-label="Brooklyn Half Marathon Experience">
+            <!-- TO ADD LOGO: Upload brooklyn-logo.png to GitHub and uncomment below -->
+            <img src="brooklyn-logo.png" alt="NYRR Brooklyn Half Marathon Experience">
+            <!-- If logo doesn't show, use this placeholder: -->
+            <!-- <div style="background: white; padding: 15px; border-radius: 10px; font-weight: bold; color: #2c3e50;">Brooklyn Half</div> -->
+        </a>
+        
+        <div class="hero-content">
+            <h1>Miles For Uncle Edwy</h1>
+            <p class="subtitle">Running with purpose. Running with heart. Running in his memory.</p>
+            <p>Every step of the Brooklyn Half Marathon honors the man who taught us strength, courage, and love.</p>
+            <div class="race-badge">Brooklyn Half Marathon Experience | May 2025</div>
+        </div>
+    </div>
+
+    <div class="uncle-tribute">
+        <div class="tribute-content">
+            <h2>In Loving Memory</h2>
+            <div class="tribute-box">
+                <h3>Uncle Edwy</h3>
+                <p class="dates">Forever in Our Hearts | 2021</p>
+                
+                <!-- Uncle Edwy's Photo - REPLACE 'uncle-edwy.jpg' with your image filename -->
+                <div class="photo-frame">
+                    <!-- TO ADD PHOTO: Upload image to GitHub and replace src below -->
+                    <!-- <img src="uncle-edwy.jpg" alt="Uncle Edwy"> -->
+                    <div class="photo-placeholder">📷</div>
+                </div>
+                
+                <div class="heart">❤️</div>
+                <p>Uncle Edwy was more than family—he was a light in our lives, a source of strength, and an example of grace in the face of adversity. When colorectal cancer took him from us in 2021, we lost not just an uncle, but a cherished friend, mentor, and beloved family member.</p>
+                <p>His battle with cancer showed us what true courage looks like. His smile never faded, his kindness never wavered, and his love for family never diminished—even in his darkest moments.</p>
+                <p><strong>This race is for him. Every mile is a tribute. Every dollar raised is his legacy continuing to fight the disease that took him too soon.</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section story">
+        <div class="container">
+            <h2>Why I'm Running</h2>
+            <div class="story-content">
+                <p>When Uncle Edwy passed away from colorectal cancer in 2021, our family was devastated. But in our grief, we found purpose. We found a way to turn our pain into something positive, to honor his memory by helping others facing the same battle he fought so bravely.</p>
+                
+                <p>That's why I'm running 13.1 miles through the streets of Brooklyn. Every stride is a prayer for those still fighting. Every breath is a promise to Uncle Edwy that his legacy will live on through our efforts to support cancer research and treatment.</p>
+                
+                <div class="impact-section">
+                    <h3>Fighting Cancer on Two Fronts</h3>
+                    <p style="text-align: center; margin-bottom: 30px; color: #666;">I'm raising funds for two incredible organizations that represent hope for families facing cancer:</p>
+                    
+                    <div class="impact-grid">
+                        <div class="impact-item">
+                            <h4>St. Jude Children's Research Hospital</h4>
+                            <p>Because no child should face cancer alone, and no family should face financial ruin while fighting for their child's life. St. Jude ensures families never receive a bill for treatment, travel, housing, or food.</p>
+                        </div>
+                        
+                        <div class="impact-item">
+                            <h4>Memorial Sloan Kettering Cancer Center</h4>
+                            <p>Advancing colorectal cancer research in Uncle Edwy's name. Every dollar goes toward groundbreaking research and compassionate care, working to prevent other families from experiencing the heartbreak we did.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 40px; font-size: 1.3em; text-align: center; color: #667eea;"><strong>Uncle Edwy can't be here to see the finish line, but his spirit will carry me through every mile. Together, we can transform his loss into lasting hope for countless families.</strong></p>
+                
+                <!-- Photo Gallery Section -->
+                <div class="race-photo-section">
+                    <h3>Memories & Training Journey</h3>
+                    <div class="photo-gallery">
+                        <!-- Photo 1 -->
+                        <div class="gallery-item">
+                            <!-- <img src="memory1.jpg" alt="Memory with Uncle Edwy"> -->
+                            <div class="gallery-placeholder">
+                                📷<br>Add your favorite memory photo here
+                            </div>
+                            <div class="gallery-caption">A cherished moment together</div>
+                        </div>
+                        
+                        <!-- Photo 2 -->
+                        <div class="gallery-item">
+                            <!-- <img src="training1.jpg" alt="Training for the race"> -->
+                            <div class="gallery-placeholder">
+                                📷<br>Training for Uncle Edwy
+                            </div>
+                            <div class="gallery-caption">Training to honor his memory</div>
+                        </div>
+                        
+                        <!-- Photo 3 -->
+                        <div class="gallery-item">
+                            <!-- <img src="memory2.jpg" alt="Family memory"> -->
+                            <div class="gallery-placeholder">
+                                📷<br>Add another memory
+                            </div>
+                            <div class="gallery-caption">Family moments we treasure</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h2>Fundraising Progress</h2>
+            
+            <div class="fundraising-tracker">
+                <div class="tracker-header">
+                    <h3>Miles For Uncle Edwy Fund</h3>
+                    <div class="total-raised" id="totalRaised">$0</div>
+                    <div class="goal-text">of <span id="goalAmount">$10,000</span> goal</div>
+                </div>
+                
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar">
+                        <span id="percentageText">0%</span>
+                    </div>
+                </div>
+                
+                <div class="charity-breakdown">
+                    <div class="charity-item">
+                        <h4>St. Jude Children's Hospital</h4>
+                        <div class="charity-amount" id="stJudeAmount">$0</div>
+                    </div>
+                    <div class="charity-item">
+                        <h4>Memorial Sloan Kettering<br><small>Colorectal Cancer Research</small></h4>
+                        <div class="charity-amount" id="mskAmount">$0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section donation-section">
+        <div class="container">
+            <h2>Honor Uncle Edwy's Memory</h2>
+            <div class="donation-intro">
+                <p><strong>Your donation does more than support my race—it honors Uncle Edwy's life and helps families fighting cancer today.</strong></p>
+                <p>Choose to support St. Jude Children's Hospital, Memorial Sloan Kettering's colorectal cancer research in Uncle Edwy's name, or split your donation between both. Every contribution is a step toward a world without cancer.</p>
+            </div>
+            
+            <div class="donation-cards">
+                <div class="donation-card">
+                    <h3>St. Jude Children's Hospital</h3>
+                    <p>Support families so they can focus on what matters most: helping their child live. No family ever receives a bill from St. Jude for treatment, travel, housing, or food.</p>
+                    
+                    <!-- REPLACE THIS DIV WITH ST. JUDE EMBED CODE -->
+                    <div class="embed-placeholder">
+                        Insert St. Jude donation widget here
+                    </div>
+                    
+                    <a href="https://www.stjude.org/donate" target="_blank" class="donate-button">Donate to St. Jude</a>
+                </div>
+                
+                <div class="donation-card">
+                    <h3>Memorial Sloan Kettering</h3>
+                    <p>Fund groundbreaking colorectal cancer research in Uncle Edwy's memory. Help MSK continue their life-saving work and prevent other families from experiencing our loss.</p>
+                    
+                    <!-- REPLACE THIS DIV WITH MSK EMBED CODE -->
+                    <div class="embed-placeholder">
+                        Insert MSK donation widget here
+                    </div>
+                    
+                    <a href="https://giving.mskcc.org" target="_blank" class="donate-button">Donate to MSK</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h3>Thank You For Keeping Uncle Edwy's Memory Alive</h3>
+        <p style="font-size: 1.2em; margin-top: 20px;">Every mile matters. Every donation counts. Every memory lives on.</p>
+        <p style="margin-top: 30px; opacity: 0.8;">Brooklyn Half Marathon Experience | May 2025</p>
+        <div class="heart" style="font-size: 2em; margin-top: 20px;">❤️</div>
+    </div>
+
+    <script>
+        // ============================================
+        // UPDATE THESE VALUES WITH YOUR FUNDRAISING TOTALS
+        // ============================================
+        const stJudeAmount = 0;        // Amount raised for St. Jude
+        const mskAmount = 0;            // Amount raised for MSK
+        const goalAmount = 10000;       // Your total fundraising goal
+        
+        // ============================================
+        // DO NOT EDIT BELOW THIS LINE
+        // ============================================
+        function updateFundraisingDisplay() {
+            const totalRaised = stJudeAmount + mskAmount;
+            const percentage = Math.min((totalRaised / goalAmount) * 100, 100);
+            
+            document.getElementById('totalRaised').textContent = '$' + totalRaised.toLocaleString();
+            document.getElementById('goalAmount').textContent = '$' + goalAmount.toLocaleString();
+            document.getElementById('stJudeAmount').textContent = '$' + stJudeAmount.toLocaleString();
+            document.getElementById('mskAmount').textContent = '$' + mskAmount.toLocaleString();
+            document.getElementById('progressBar').style.width = percentage + '%';
+            document.getElementById('percentageText').textContent = Math.round(percentage) + '%';
+        }
+        
+        updateFundraisingDisplay();
+    </script>
+</body>
+</html>
